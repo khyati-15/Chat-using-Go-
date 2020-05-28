@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ChatRoom-Signup</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+       
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+           nav{
+                font-weight: bold;
+                background-color: white;
+                box-shadow: 0 0 10px;
+                padding: 8px;
+                width:100%;
+                position: sticky;
+            }
+            body{
+                height:87vh;
+            }
+            .loginformholder{
+                height:100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .form{
+                width: 100%;	
+            }       
+            .loginform{
+                width:40%;
+                box-shadow: 0px 0px 10px;
+                height: 50%; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top:1%;
+                margin-bottom: 1%;
+            }
+            .info{
+                  font-size: 1.5rem !important;
+                text-align:center;
+            }
+            .data{
+                display:inline;
+            }
+            .features{
+                 border-radius: 15px;
+                display: inline;
+                font-size: 1.5rem !important;
+                text-align:center;
+            }
+            @media only screen and (max-width: 1024px){
+               
+                .loginform{
+                    width: 100%;
+                    box-shadow: 0px 0px 0px;
+/*                    height:80vh;*/
+                    margin-top:0%;
+                    margin-bottom:0%;
+                }
+                h1{
+                    font-size:15px;
+                }
+                nav{
+                    width:100%;
+                }
+            }
+
+            @media (max-width: 1200px) {
+                .info{
+                    font-size: calc(1.375rem ) !important;
+                }
+                .features{
+                    display:flex;
+                    margin-top:2px;
+                }
+                .footer-sign{
+                    float:left;
+                }
+            }
+           
+        </style>
+        <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Baumans' rel='stylesheet'>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    </head>
+    <body style="background-color:black;color:white;">
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:100%;box-sizing:none">
+          <a class="navbar-brand" href="#">ChatRoom</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+             
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active"><a class="nav-link" href="/signup" >Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login" >Login</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="alert alert-danger" role="alert" id="message" style="visibility: hidden;text-align:center"></div>  
+
+	
+           <center>
+            <div class="loginformholder">
+                    <div class="loginform">
+                        <div class="myform">
+                            <div class="form">
+                                <br>
+                                    <form class="form-horizontal" method="POST" action="/signup">
+                                      
+                                    <div class="form-group">
+                                        <label for="Username1">Username</label>
+                                        <input type="text" aria-describedby="usernamehelp" class="form-control" pattern="[A-Za-z0-9_]{6,10}" name="username" id="UserName" placeholder="Enter username"  required>
+                                        <span id="unameexist" class="spanUName" style="color:red; visibility: hidden"></span>
+                                        <small id="emailHelp" class="form-text text-muted">Atleast 6 letter/number combination</small>
+
+                                    </div>
+                                      
+                                      <div class="form-group">
+                                        <label for="Password1">Password</label>
+                                        <input type="password" aria-describedby="passwordHelp" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="password" id="Password" placeholder="Password" required>
+                                        <small id="passwordHelp" class="form-text text-muted">Must contain an uppercase,a lowercase and a number </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Password1">Confirm Password</label>
+                                        <input type="password" aria-describedby="passwordCHelp" class="form-control" name="Passwordc" oninput="confirmPassword()" id="Passwordc" placeholder="Confirm Password" required>
+                                        <small id="passwordCHelp" class="form-text text-muted" style="visibility: hidden;">Password not matched </small>
+                                      </div>
+                                       
+                                     
+                                    
+                                        <br><br>
+                                      <input type="submit" value="Sign Up" class="btn btn-primary" id="signUp" disabled="true" />
+                                    </form>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </center>
+      
+      
+       <footer style="background-color:white;color:black">
+            <i><b><p style="text-align:center;font-size:1.5rem !important" id="footer-data"></p></b>
+             <p class="features">Have an account? <a href="/login">Login</a>
+               <p class="features" id="footer-sign" style="float:right">New User? <a href="/signup">Sign up</a></p></i>
+            <br><br>
+        </footer>
+        {{if .Alert}}
+        {{.Pushmsg}}
+        {{end}}
+    </body>
+    <script>
+    var d=new Date();
+      $('#footer-data').html("&copy; "+d.getFullYear()+" <b>ChatRoom</b>");
+   
+    function confirmPassword(event){
+        if($('#Password').val()==$('#Passwordc').val()){
+          document.getElementById("passwordCHelp").setAttribute("style","visibility:hidden");                    
+          document.getElementById("signUp").removeAttribute("disabled");
+        }
+        else{
+          document.getElementById("passwordCHelp").setAttribute("style","visibility:visible");
+          document.getElementById("signUp").setAttribute("disabled",true);
+        }
+
+    }
+
+   
+</script>
+</html>
